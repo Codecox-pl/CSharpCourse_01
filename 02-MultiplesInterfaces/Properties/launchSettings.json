@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "02-MultiplesInterfaces": {
+      "commandName": "Project"
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    }
+  }
+}
