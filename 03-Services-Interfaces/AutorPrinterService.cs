@@ -3,23 +3,34 @@ namespace _03_Services_Interfaces
 {
     public class AutorPrinterService
     {
-        private readonly IAutorRepository _repository;
+        private readonly IRepository<Autor> _repository;
 
-        public AutorPrinterService(IAutorRepository repository)
+        public AutorPrinterService(IRepository<Autor> repository)
         {
             _repository = repository;
         }
 
-        public void PrintAutores()
+        public void PrintAutores(int max = 100)
         {
-            var autores = _repository.List();
-            Array.Sort(autores);
+            var autores = _repository.List().Take(max).ToArray();
+            //Array.Sort(autores);
 
-            Console.WriteLine("Imprimiendo Lista de autores desde el metodo Printautores");
+            //Console.WriteLine("Imprimiendo Lista de autores desde el metodo Printautores");
 
-            for (int i = 0; i < autores.Length; i++)
+            //for (int i = 0; i < autores.Length; i++)
+            //{
+            //    Console.WriteLine(autores[i]);
+            //}
+            PrintAutoresConsola(autores);
+        }
+
+        private void PrintAutoresConsola(IEnumerable<Autor> autores)
+        {
+            Console.WriteLine("Autores: ");
+
+            foreach (var autor in autores)
             {
-                Console.WriteLine(autores[i]);
+                Console.WriteLine(autor);
             }
         }
     }

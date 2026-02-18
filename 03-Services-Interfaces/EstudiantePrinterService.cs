@@ -1,19 +1,21 @@
 ﻿
 
+using _01_DiseñoObjetos;
+
 namespace _03_Services_Interfaces
 {
     public class EstudiantePrinterService
     {
-        private readonly IEstudianteRepository _estudianteRepository;
+        private readonly IRepository<Estudiante> _estudianteRepository;
 
-        public EstudiantePrinterService(IEstudianteRepository estudianteRepository)
+        public EstudiantePrinterService(IRepository<Estudiante> estudianteRepository)
         {
             _estudianteRepository = estudianteRepository;
         }
 
         public void Prinautores()
         {
-           var autores =  _estudianteRepository.List();
+           var autores =  _estudianteRepository.List().ToArray();
             Array.Sort(autores);
 
             Console.WriteLine("Imprimiendo Lista de autores desde el metodo Printautores");

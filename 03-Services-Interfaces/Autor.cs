@@ -8,6 +8,7 @@ namespace _03_Services_Interfaces
 {
     public class Autor : IComparable<Autor>
     {
+        public static int AutorCount = 0;
         public string? Nombre { get; set; }
 
         public string? Apellido { get; set; }
@@ -16,6 +17,7 @@ namespace _03_Services_Interfaces
         {
             Nombre = nombre;
             Apellido = apellido;
+            AutorCount++;
         }
 
         public override string ToString()
@@ -38,4 +40,7 @@ namespace _03_Services_Interfaces
         //    throw new ArgumentException("No es un tipo de autor", nameof(obj));
         //}
     }
+
+
+    public record NombreCompleto(string Nombre, string Apellido);
 }

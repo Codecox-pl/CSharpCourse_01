@@ -4,9 +4,9 @@ using _01_DiseñoObjetos;
 
 namespace _03_Services_Interfaces
 {
-    public class EstudianteRepository : IEstudianteRepository
+    public class EstudianteRepository : IRepository<Estudiante>
     {
-        public Estudiante[] List()
+        public IEnumerable<Estudiante> List()
         {
             var autores = new Estudiante[10];
 

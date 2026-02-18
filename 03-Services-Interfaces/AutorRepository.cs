@@ -1,24 +1,33 @@
 ﻿
 namespace _03_Services_Interfaces
 {
-    public class AutorRepository : IAutorRepository
+    public class AutorRepository : IRepository<Autor>
     {
-        public Autor[] List()
+        private NombreCompleto[] _nombres = new NombreCompleto[10];
+
+        public AutorRepository()
         {
-            var autores = new Autor[10];
+            _nombres[0] = new ("Patrick", "Luis");
+            _nombres[1] = new ("Claudia", "Ruiz");
+            _nombres[2] = new ("Camilo", "Flores");
+            _nombres[3] = new ("Valentina", "Quispe");
+            _nombres[4] = new ("Zoro", "Montezco");
+            _nombres[5] = new ("Sanji", "Aguero");
+            _nombres[6] = new ("Luffy", "Ramirez");
+            _nombres[7] = new ("Luffy", "Ramirez");
+            _nombres[8] = new ("Luffy", "Ramirez");
+            _nombres[9] = new ("Luffy", "Ramirez");
+        }
 
-            autores[0] = new Autor("Patrick", "Luis");
-            autores[1] = new Autor("Claudia", "Ruiz");
-            autores[2] = new Autor("Camilo", "Flores");
-            autores[3] = new Autor("Valentina", "Quispe");
-            autores[4] = new Autor("Zoro", "Montezco");
-            autores[5] = new Autor("Sanji", "Aguero");
-            autores[6] = new Autor("Luffy", "Ramirez");
-            autores[7] = new Autor("Luffy", "Ramirez");
-            autores[8] = new Autor("Luffy", "Ramirez");
-            autores[9] = new Autor("Luffy", "Ramirez");
+        public IEnumerable<Autor> List()
+        {
+            int index = 0;
 
-            return autores;
+            while(index < _nombres.Length)
+            {
+                yield return new Autor(_nombres[index].Nombre, _nombres[index].Apellido);
+                index++;
+            }
         }
     }
 }
