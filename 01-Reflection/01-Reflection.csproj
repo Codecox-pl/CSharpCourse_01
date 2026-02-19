@@ -3,13 +3,9 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>_03_Services_Interfaces</RootNamespace>
+    <RootNamespace>_01_Reflection</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\04-Constraints-Genericos\04-Constraints-Genericos.csproj" />
-  </ItemGroup>
 
 </Project>

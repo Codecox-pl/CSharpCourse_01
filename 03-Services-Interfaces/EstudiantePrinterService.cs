@@ -1,28 +1,51 @@
 ﻿
-
-using _01_DiseñoObjetos;
-
-namespace _03_Services_Interfaces
+namespace _04_Constraints_Genericos
 {
     public class EstudiantePrinterService
     {
-        private readonly IRepository<Estudiante> _estudianteRepository;
+        private readonly IPersonaRepository<Estudiante> _estudianteRepository;
 
-        public EstudiantePrinterService(IRepository<Estudiante> estudianteRepository)
+        public EstudiantePrinterService(IPersonaRepository<Estudiante> estudianteRepository)
         {
             _estudianteRepository = estudianteRepository;
         }
 
-        public void Prinautores()
+        public void PrintEstudiantes(int max = 100)
         {
-           var autores =  _estudianteRepository.List().ToArray();
-            Array.Sort(autores);
+            //var autores =  _estudianteRepository.List().ToArray();
+            // Array.Sort(autores);
 
-            Console.WriteLine("Imprimiendo Lista de autores desde el metodo Printautores");
+            // Console.WriteLine("Imprimiendo Lista de autores desde el metodo Printautores");
 
-            for (int i = 0; i < autores.Length; i++)
+            // for (int i = 0; i < autores.Length; i++)
+            // {
+            //     Console.WriteLine(autores[i]);
+            // }
+            var estudiantes = _estudianteRepository.OrdenarList().Take(max).ToArray();
+
+            PrintAutoresConsola(estudiantes);
+
+            var estudiantesBuscados = _estudianteRepository.Buscar("Luis");
+            PrintEstudiantesBuscados(estudiantesBuscados);
+        }
+
+        private void PrintAutoresConsola(IEnumerable<Estudiante> estudiantes)
+        {
+            Console.WriteLine("Estudiantes: ");
+
+            foreach (var estudiante in estudiantes)
             {
-                Console.WriteLine(autores[i]);
+                Console.WriteLine(estudiante);
+            }
+        }
+
+        private void PrintEstudiantesBuscados(IEnumerable<Estudiante> estudiantes)
+        {
+            Console.WriteLine("Estudiantes: ");
+
+            foreach (var estudiante in estudiantes)
+            {
+                Console.WriteLine(estudiante);
             }
         }
     }

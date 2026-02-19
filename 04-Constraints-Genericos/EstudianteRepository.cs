@@ -1,11 +1,24 @@
 ﻿
 
-
-
 namespace _04_Constraints_Genericos
 {
-    public class EstudianteRepository : IRepository<Estudiante>
+    public class EstudianteRepository : IPersonaRepository<Estudiante>
     {
+        public IEnumerable<Estudiante> Buscar(string nombre)
+        {
+            return List().Where( x => x.Nombre!.Contains(nombre) || x.Apellido!.Contains(nombre));
+        }
+
+        public Estudiante Crear(NombreCompleto nombre)
+        {
+            return new Estudiante(nombre.Nombre,nombre.Apellido);
+        }
+
+        public Estudiante CrearPorDefecto()
+        {
+            return new Estudiante();
+        }
+
         public IEnumerable<Estudiante> List()
         {
             var autores = new Estudiante[10];
@@ -26,7 +39,9 @@ namespace _04_Constraints_Genericos
 
         public IEnumerable<Estudiante> OrdenarList()
         {
-            throw new NotImplementedException();
+            var estudiantes = List().ToList();
+            estudiantes.Sort();
+            return estudiantes;
         }
     }
 }
