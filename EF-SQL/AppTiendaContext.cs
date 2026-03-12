@@ -17,9 +17,17 @@ namespace EF_SQL
             optionsBuilder.UseSqlServer(connectionString);
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CategoriaProducto>().HasKey(xi => new { xi.CategoriaId, xi.ProductoId });
+        }
+
         public DbSet<Tienda> Tienda { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
 
         public DbSet<Categoria> Categoria { get; set; }
+
+        public DbSet<CategoriaProducto> CategoriaProducto { get; set; }
+        public DbSet<Producto> Producto { get; set; }
     }
 }

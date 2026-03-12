@@ -17,5 +17,7 @@ namespace EF_SQL
         public int TiendaId { get; set; }
 
         public Tienda? Tienda { get; set; }
+
+        public ICollection<CategoriaProducto> Productos { get; set; }
     }
 }
