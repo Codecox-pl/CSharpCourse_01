@@ -17,18 +17,18 @@ autores[7] = new Estudiante("Luffy", "Ramirez");
 autores[8] = new Estudiante("Luffy", "Ramirez");
 autores[9] = new Estudiante("Luffy", "Ramirez");
 
-var autores = new Autor[10];
+//var autores = new Autor[10];
 
-for (int i = 0; i < autores.Length; i++)
-{
-    autores[i] = new Autor(autores[i].Nombre, autores[i].Apellido);
-}
+//for (int i = 0; i < autores.Length; i++)
+//{
+//    autores[i] = new Autor(autores[i].Nombre, autores[i].Apellido);
+//}
 
 
-Array.Sort(autores);
-Console.WriteLine("Esta es la lista de autores: ");
+//Array.Sort(autores);
+//Console.WriteLine("Esta es la lista de autores: ");
 
-for (int i = 0; i < autores.Length; i++)
-{
-    Console.WriteLine(autores[i]);
-}
+//for (int i = 0; i < autores.Length; i++)
+//{
+//    Console.WriteLine(autores[i]);
+//}
