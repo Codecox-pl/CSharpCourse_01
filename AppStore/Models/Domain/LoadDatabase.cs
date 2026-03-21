@@ -26,7 +26,7 @@ namespace AppStore.Models.Domain
 
             if(!context.Categorias.Any()) 
             {
-                context.Categorias.AddRange(
+               await context.Categorias.AddRangeAsync(
                      new Categoria { Nombre = "Componente"},
                       new Categoria { Nombre = "Discos" },
                        new Categoria { Nombre = "Perifericos" },
@@ -38,7 +38,7 @@ namespace AppStore.Models.Domain
 
             if(!context.Productos.Any()) 
             {
-                context.Productos.AddRange(
+                await context.Productos.AddRangeAsync(
                       new Producto { 
                           NombrePro = "Mouse Gamer Razer x1", 
                           Precio = 168.10m, 
@@ -58,13 +58,13 @@ namespace AppStore.Models.Domain
 
             if (!context.CategoriaProductos.Any())
             {
-                context.CategoriaProductos.AddRange(
+               await context.CategoriaProductos.AddRangeAsync(
                       new CategoriaProducto { CategoriaId = 3, ProductoId = 1},
                       new CategoriaProducto { CategoriaId = 4 , ProductoId = 2}
                     );
             }
 
-            context.SaveChanges();
+           await context.SaveChangesAsync();
         }
 
 
