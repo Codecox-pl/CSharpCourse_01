@@ -16,8 +16,6 @@ namespace AppStore.Models.Domain
 
         public int TiendaId { get; set; }
 
-        public Tienda? Tienda { get; set; }
-
         public ICollection<Producto>? ProductoRelationList { get; set; }
         public ICollection<CategoriaProducto>? ProductoCategoriaRelationList { get; set; }
     }

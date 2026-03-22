@@ -24,6 +24,7 @@ namespace AppStore.Models.Domain
                 await usuarioManager.AddToRoleAsync(usuario, "ADMIN");
             }
 
+
             if(!context.Categorias.Any()) 
             {
                await context.Categorias.AddRangeAsync(
@@ -55,6 +56,8 @@ namespace AppStore.Models.Domain
                     );
               
             }
+
+            await context.SaveChangesAsync();
 
             if (!context.CategoriaProductos.Any())
             {

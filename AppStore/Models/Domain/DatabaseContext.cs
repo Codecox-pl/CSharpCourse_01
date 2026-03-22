@@ -35,6 +35,5 @@ namespace AppStore.Models.Domain
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Producto> Productos { get; set; }
         public DbSet<CategoriaProducto> CategoriaProductos { get; set; }
-        public DbSet<Tienda> Tiendas { get; set; }
     }
 }

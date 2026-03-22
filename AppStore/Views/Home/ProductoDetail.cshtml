@@ -1,0 +1,62 @@
+﻿@model AppStore.Models.Domain.Producto;
+@{
+
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Model.NombrePro | TechStore</title>
+    <link rel="stylesheet" href="~/css/Prodetail.css">
+</head>
+<body>
+
+    <main class="product-detail-container">
+        <nav class="breadcrumb">
+            <a href="">Inicio</a> / <a href="#">Catálogo</a> / <span>Laptop Pro Minimal</span>
+        </nav>
+
+        <div class="product-detail-grid">
+            <div class="product-gallery">
+                <img src="https://placehold.co/800x800/f2f2f2/808080?text=Imagen+Principal" alt="Laptop Pro" class="main-image">
+                <div class="thumbnail-list">
+                    <img src="https://placehold.co/150x150/f2f2f2/808080?text=Vista+1" alt="Vista 1" class="thumbnail active">
+                    <img src="https://placehold.co/150x150/f2f2f2/808080?text=Vista+2" alt="Vista 2" class="thumbnail">
+                    <img src="https://placehold.co/150x150/f2f2f2/808080?text=Vista+3" alt="Vista 3" class="thumbnail">
+                    <img src="https://placehold.co/150x150/f2f2f2/808080?text=Vista+4" alt="Vista 4" class="thumbnail">
+                </div>
+            </div>
+
+            <div class="product-details">
+                <h1 class="product-title">@Model.NombrePro</h1>
+                <p class="product-price">@Model.Precio</p>
+                <p class="product-description">
+                   @Model.Descripcion
+                </p>
+
+                <div class="product-options">
+                    <label for="color-select">Color:</label>
+                    <select id="color-select" class="select-box">
+                        <option>Gris Espacial</option>
+                        <option>Plata</option>
+                        <option>Negro Mate</option>
+                    </select>
+                </div>
+
+                <div class="product-actions">
+                    <input type="number" value="1" min="1" class="quantity-input" aria-label="Cantidad">
+                    <button class="btn-primary btn-large">Añadir al carrito</button>
+                </div>
+
+                <div class="product-meta">
+                    <p><strong>Stock:</strong> Disponible (Envío inmediato)</p>
+                    <p><strong>Categoría:</strong> Computadoras</p>
+                    <p><strong>SKU:</strong> LP-MIN-2026</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

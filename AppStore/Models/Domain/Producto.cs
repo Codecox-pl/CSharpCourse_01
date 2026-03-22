@@ -1,4 +1,6 @@
-﻿namespace AppStore.Models.Domain
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace AppStore.Models.Domain
 {
     public class Producto
     {
@@ -10,5 +12,10 @@
 
         public ICollection<Categoria>? CategoriaRelationList { get; set; }
         public ICollection<CategoriaProducto>? ProductoCategoriaRelationList { get; set; }
+
+        [NotMapped]
+        public List<int>? Categorias { get; set; }
+        [NotMapped]
+        public string? CategoriasNames { get; set; }
     }
 }

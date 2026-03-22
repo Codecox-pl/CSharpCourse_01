@@ -3,7 +3,7 @@ using AppStore.Models.DTO;
 
 namespace AppStore.Repositories.Abstract
 {
-    public interface ILibro
+    public interface IProductoService
     {
         bool Add(Producto producto);
         bool Update(Producto producto);

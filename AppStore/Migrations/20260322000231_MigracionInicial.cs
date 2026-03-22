@@ -52,6 +52,21 @@ namespace AppStore.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Categorias",
+                columns: table => new
+                {
+                    CategoriaId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nombre = table.Column<string>(type: "TEXT", nullable: true),
+                    Descripcion = table.Column<string>(type: "TEXT", nullable: true),
+                    TiendaId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categorias", x => x.CategoriaId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Productos",
                 columns: table => new
                 {
@@ -65,21 +80,6 @@ namespace AppStore.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Productos", x => x.ProductoId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tiendas",
-                columns: table => new
-                {
-                    TiendaId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Nombre = table.Column<string>(type: "TEXT", nullable: true),
-                    Ubicacion = table.Column<string>(type: "TEXT", nullable: true),
-                    FechaCreacion = table.Column<DateTime>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tiendas", x => x.TiendaId);
                 });
 
             migrationBuilder.CreateTable(
@@ -189,50 +189,6 @@ namespace AppStore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Categorias",
-                columns: table => new
-                {
-                    CategoriaId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Nombre = table.Column<string>(type: "TEXT", nullable: true),
-                    Descripcion = table.Column<string>(type: "TEXT", nullable: true),
-                    TiendaId = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Categorias", x => x.CategoriaId);
-                    table.ForeignKey(
-                        name: "FK_Categorias_Tiendas_TiendaId",
-                        column: x => x.TiendaId,
-                        principalTable: "Tiendas",
-                        principalColumn: "TiendaId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Usuario",
-                columns: table => new
-                {
-                    UsuarioId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    NombreCompl = table.Column<string>(type: "TEXT", nullable: true),
-                    ApellidoCompl = table.Column<string>(type: "TEXT", nullable: true),
-                    DNI = table.Column<string>(type: "TEXT", nullable: false),
-                    TiendaId = table.Column<int>(type: "INTEGER", nullable: false),
-                    FechaCreacion = table.Column<DateTime>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Usuario", x => x.UsuarioId);
-                    table.ForeignKey(
-                        name: "FK_Usuario_Tiendas_TiendaId",
-                        column: x => x.TiendaId,
-                        principalTable: "Tiendas",
-                        principalColumn: "TiendaId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "CategoriaProductos",
                 columns: table => new
                 {
@@ -297,17 +253,6 @@ namespace AppStore.Migrations
                 name: "IX_CategoriaProductos_CategoriaId",
                 table: "CategoriaProductos",
                 column: "CategoriaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Categorias_TiendaId",
-                table: "Categorias",
-                column: "TiendaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Usuario_TiendaId",
-                table: "Usuario",
-                column: "TiendaId",
-                unique: true);
         }
 
         /// <inheritdoc />
@@ -332,9 +277,6 @@ namespace AppStore.Migrations
                 name: "CategoriaProductos");
 
             migrationBuilder.DropTable(
-                name: "Usuario");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -345,9 +287,6 @@ namespace AppStore.Migrations
 
             migrationBuilder.DropTable(
                 name: "Productos");
-
-            migrationBuilder.DropTable(
-                name: "Tiendas");
         }
     }
 }

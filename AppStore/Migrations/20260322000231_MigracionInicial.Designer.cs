@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppStore.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20260319023249_MigracionInicial")]
+    [Migration("20260322000231_MigracionInicial")]
     partial class MigracionInicial
     {
         /// <inheritdoc />
@@ -104,8 +104,6 @@ namespace AppStore.Migrations
 
                     b.HasKey("CategoriaId");
 
-                    b.HasIndex("TiendaId");
-
                     b.ToTable("Categorias");
                 });
 
@@ -145,56 +143,6 @@ namespace AppStore.Migrations
                     b.HasKey("ProductoId");
 
                     b.ToTable("Productos");
-                });
-
-            modelBuilder.Entity("AppStore.Models.Domain.Tienda", b =>
-                {
-                    b.Property<int>("TiendaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("FechaCreacion")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Nombre")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Ubicacion")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("TiendaId");
-
-                    b.ToTable("Tiendas");
-                });
-
-            modelBuilder.Entity("AppStore.Models.Domain.Usuario", b =>
-                {
-                    b.Property<int>("UsuarioId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ApellidoCompl")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("DNI")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("FechaCreacion")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NombreCompl")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("TiendaId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("UsuarioId");
-
-                    b.HasIndex("TiendaId")
-                        .IsUnique();
-
-                    b.ToTable("Usuario");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -325,17 +273,6 @@ namespace AppStore.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("AppStore.Models.Domain.Categoria", b =>
-                {
-                    b.HasOne("AppStore.Models.Domain.Tienda", "Tienda")
-                        .WithMany("CategoriaLista")
-                        .HasForeignKey("TiendaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Tienda");
-                });
-
             modelBuilder.Entity("AppStore.Models.Domain.CategoriaProducto", b =>
                 {
                     b.HasOne("AppStore.Models.Domain.Categoria", "Categoria")
@@ -353,17 +290,6 @@ namespace AppStore.Migrations
                     b.Navigation("Categoria");
 
                     b.Navigation("Producto");
-                });
-
-            modelBuilder.Entity("AppStore.Models.Domain.Usuario", b =>
-                {
-                    b.HasOne("AppStore.Models.Domain.Tienda", "Tienda")
-                        .WithOne("Usuario")
-                        .HasForeignKey("AppStore.Models.Domain.Usuario", "TiendaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Tienda");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -425,13 +351,6 @@ namespace AppStore.Migrations
             modelBuilder.Entity("AppStore.Models.Domain.Producto", b =>
                 {
                     b.Navigation("ProductoCategoriaRelationList");
-                });
-
-            modelBuilder.Entity("AppStore.Models.Domain.Tienda", b =>
-                {
-                    b.Navigation("CategoriaLista");
-
-                    b.Navigation("Usuario");
                 });
 #pragma warning restore 612, 618
         }
