@@ -2,7 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    Layout = null;
+    string username = User.Identity!.Name!;
 }
 
 <!DOCTYPE html>
@@ -23,8 +23,21 @@
                 <a href="#">Catálogo</a>
                 <a href="/Home/About">About</a>
             </nav>
+
+            @if(!string.IsNullOrEmpty(username))
+            {
+                <a href="#">Panel</a>
+                <a href="#">Categorias</a>
+                <a href="#">Productos</a>
+                <a href="/UserAuthentication/Logout">Logout</a>
+            }
+
             <div class="nav-actions">
-                <button class="login-btn">Iniciar sesión</button>
+                @if(string.IsNullOrEmpty(username))
+                {
+                    <button class="login-btn" href="/UserAuthentication/Login">Iniciar sesión</button>
+                }
+                
                 <button class="cart-btn">Carrito (0)</button>
             </div>
         </div>
