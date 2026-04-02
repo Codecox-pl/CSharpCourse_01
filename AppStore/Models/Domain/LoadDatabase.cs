@@ -17,7 +17,8 @@ namespace AppStore.Models.Domain
                 {
                     Nombre = "Patrick Luis",
                     Email = "patrick@gmail.com",
-                    UserName = "Codecox"
+                    UserName = "Codecox",
+                    EmailConfirmed = true
                 };
 
                 await usuarioManager.CreateAsync(usuario, "Marzo2026$");

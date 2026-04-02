@@ -1,1 +1,137 @@
-﻿
+﻿body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+}
+
+/* --- Página de Login --- */
+.login-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 300px); /* Ajuste para centrar considerando navbar y footer */
+    padding: 60px 24px;
+    background-color: var(--surface-color); /* Fondo ligeramente gris para resaltar la tarjeta */
+}
+
+.login-card {
+    background-color: var(--bg-color);
+    width: 100%;
+    max-width: 440px;
+    padding: 48px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--border-color);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+    .login-header h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+        letter-spacing: -0.02em;
+    }
+
+    .login-header p {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+/* --- Formulario --- */
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+    .form-group label {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: var(--text-main);
+    }
+
+.form-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+}
+
+    .form-input:focus {
+        border-color: var(--text-main);
+        box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.1); /* Efecto de foco sutil */
+    }
+
+/* Opciones (Recordarme y Olvidé contraseña) */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    font-size: 0.9rem;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.forgot-password-link {
+    color: var(--text-main);
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+    .forgot-password-link:hover {
+        text-decoration: underline;
+    }
+
+/* Botón de ancho completo */
+.btn-block {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.05rem;
+}
+
+/* Footer del Login */
+.login-footer {
+    margin-top: 32px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+    padding-top: 24px;
+}
+
+    .login-footer a {
+        color: var(--text-main);
+        font-weight: 600;
+        transition: text-decoration 0.2s ease;
+    }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+/* --- Responsive --- */
+@media (max-width: 480px) {
+    .login-card {
+        padding: 32px 24px;
+    }
+}

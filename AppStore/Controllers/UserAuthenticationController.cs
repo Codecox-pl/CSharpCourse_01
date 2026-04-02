@@ -21,9 +21,19 @@ namespace AppStore.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel login)
         {
-            if(!ModelState.IsValid) 
+            if (!ModelState.IsValid)
             {
-               return View(login);
+                // Esto extraerá el nombre del campo y el error específico
+                var errorMessages = ModelState
+                    .Where(x => x.Value.Errors.Count > 0)
+                    .Select(x => new { Campo = x.Key, Errores = x.Value.Errors.Select(e => e.ErrorMessage) })
+                    .ToList();
+
+                // Creamos un string con los errores para mostrarlo en pantalla
+                string erroresConcatenados = string.Join(" | ", errorMessages.Select(x => $"{x.Campo}: {string.Join(", ", x.Errores)}"));
+
+                ViewBag.ErrorMessage = "Errores detectados: " + erroresConcatenados;
+                return View(login);
             }
 
             var resultado = await _authService.LoginAsync(login);
@@ -34,8 +44,11 @@ namespace AppStore.Controllers
             }
             else
             {
-                TempData["msg"] = resultado.Message;
-                return RedirectToAction(nameof(Login));
+                // Si resultado.Message llega nulo, esto nos avisará
+                ViewBag.ErrorMessage = string.IsNullOrEmpty(resultado.Message)
+                                       ? "El servicio devolvió un error pero sin mensaje."
+                                       : resultado.Message;
+                return View(login);
             }
         }
 

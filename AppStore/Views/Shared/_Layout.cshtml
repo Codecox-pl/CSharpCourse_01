@@ -18,13 +18,46 @@
     <header class="navbar">
         <div class="nav-container">
             <div class="logo">TechStore.</div>
-            <nav class="nav-links">
-                <a href="#">Inicio</a>
-                <a href="#">Catálogo</a>
-                <a href="/Home/About">About</a>
-            </nav>
 
-            @if(!string.IsNullOrEmpty(username))
+            @if (!User.Identity.IsAuthenticated)
+            {
+                @* --- VISTA PARA USUARIO NO AUTENTICADO --- *@
+                <nav class="nav-links">
+                <a href="/">Inicio</a>
+                <a href="/Catalogo">Catálogo</a>
+                <a href="/Home/About">About</a>
+                </nav>
+                <div class="nav-actions">
+                    <a class="login-btn" href="/UserAuthentication/Login" style="text-decoration: none;">
+                        Iniciar sesión
+                    </a>
+                    <button class="cart-btn">Carrito (0)</button>
+                </div>
+            }else
+            {
+                @* --- VISTA PARA USUARIOS LOGUEADOS --- *@
+
+                @if (User.IsInRole("ADMIN"))
+                {
+                    @* --- OPCIONES EXCLUSIVAS PARA ADMIN --- *@
+                    <a href="/Admin/Dashboard">Panel</a>
+                    <a href="/Categorias">Categorías</a>
+                    <a href="/Productos">Productos</a>
+                }
+                else
+                {
+                    @* --- OPCIONES PARA USUARIOS NORMALES (Si los tienes) --- *@
+                    <a href="/">Inicio</a>
+                    <a href="/MisPedidos">Mis Pedidos</a>
+                }
+
+                @* --- OPCIÓN COMÚN PARA TODOS LOS LOGUEADOS --- *@
+                <a href="/UserAuthentication/Logout" class="logout-link">Logout (@User.Identity.Name)</a>
+            }
+            
+            
+
+          @*   @if(!string.IsNullOrEmpty(username))
             {
                 <a href="#">Panel</a>
                 <a href="#">Categorias</a>
@@ -39,7 +72,7 @@
                 }
                 
                 <button class="cart-btn">Carrito (0)</button>
-            </div>
+            </div> *@
         </div>
     </header>
 

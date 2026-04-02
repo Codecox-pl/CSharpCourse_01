@@ -1,5 +1,7 @@
 ﻿@model AppStore.Models.DTO.LoginModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers  @* <-- AGREGA ESTO AQUÍ *@
 @{
+    Layout = null; // O tu configuración de layout
 }
 
 <!DOCTYPE html>
@@ -21,38 +23,26 @@
 
            
 
-            <form class="login-form" asp-action="Login" method="post">
+            <form class="login-form" asp-controller="UserAuthentication"  asp-action="Login" method="post">
                 <div class="form-group">
-                    <label asp-for="Username">Usuario</label>
-                    <input type="text" asp-for="Username" class="form-input form-input-error" placeholder="Tu nombre de usuario" required>
-                </div>
-
-                <div class="error-alert">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                    <span asp-validation-for="Username"></span>
+                    <label>Usuario</label>
+                    <input type="text" name="Username" id="Username" class="form-input" placeholder="Tu nombre de usuario" required value="@Model?.Username">
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Password">Contraseña</label>
-                    <input type="password" class="form-input" class="form-input form-input-error"  placeholder="••••••••" required asp-for="Password">
+                    <label>Contraseña</label>
+                    <input type="password" name="Password" id="Password" class="form-input" placeholder="••••••••" required>
                 </div>
 
-                <div class="error-alert">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                    <span asp-validation-for="Password"></span>
-                </div>
-
-                <div class="form-options">
-                    <a href="#" class="forgot-password-link">¿Olvidaste tu contraseña?</a>
-                </div>
-
-                @if(TempData["msg"]!= null)
+                @if (ViewBag.ErrorMessage != null)
                 {
-                    <div class="error-alert">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                        @TempData["msg"]
+                    <div class="error-alert" style="display: block !important; border: 2px solid red;">
+                        
+                        <span>@ViewBag.ErrorMessage</span>
                     </div>
                 }
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 <button type="submit" class="btn-primary btn-block">Ingresar</button>
             </form>
