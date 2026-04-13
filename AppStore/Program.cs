@@ -11,6 +11,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IProductoService, ProductoService>();
 builder.Services.AddScoped<IUserAuthenticationService, UserAuthenticacionService>();
+builder.Services.AddScoped<IFileService, FileService>();
+builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 
 builder.Services.AddDbContext<DatabaseContext>(opt =>
 {

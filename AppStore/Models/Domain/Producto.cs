@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AppStore.Models.Domain
 {
@@ -14,8 +15,17 @@ namespace AppStore.Models.Domain
         public ICollection<CategoriaProducto>? ProductoCategoriaRelationList { get; set; }
 
         [NotMapped]
-        public List<int>? Categorias { get; set; }
+        public List<int> Categorias { get; set; } = new List<int>();
         [NotMapped]
         public string? CategoriasNames { get; set; }
+
+        [NotMapped]
+        public IFormFile? ImageFile { get; set; }
+        [NotMapped]
+        public IEnumerable<SelectListItem>? CategoriasList { get; set; }
+        [NotMapped]
+        public MultiSelectList? MultiCategoriasList { get; set; }
+        [NotMapped]
+        public string? Imagen { get; internal set; }
     }
 }

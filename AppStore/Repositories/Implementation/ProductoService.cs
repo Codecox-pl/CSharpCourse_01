@@ -16,28 +16,31 @@ namespace AppStore.Repositories.Implementation
 
         public bool Add(Producto producto)
         {
-           try
+            try
             {
                 ctx.Productos.Add(producto);
                 ctx.SaveChanges();
 
-                foreach (var categoriaId in producto.Categorias!)
+                // Si la lista está vacía, el foreach simplemente no se ejecuta
+                // pero ya no lanzará una excepción.
+                if (producto.Categorias != null)
                 {
-                    var productoCategoria = new CategoriaProducto
+                    foreach (var categoriaId in producto.Categorias)
                     {
-                        ProductoId = producto.ProductoId,
-                        CategoriaId = categoriaId,
-                    };
-
-                    ctx.CategoriaProductos!.Add(productoCategoria);
+                        var productoCategoria = new CategoriaProducto
+                        {
+                            ProductoId = producto.ProductoId,
+                            CategoriaId = categoriaId,
+                        };
+                        ctx.CategoriaProductos.Add(productoCategoria);
+                    }
+                    ctx.SaveChanges();
                 }
 
-                ctx.SaveChanges();
                 return true;
-
             }
-            catch (Exception) 
-            { 
+            catch (Exception)
+            {
                 return false;
             }
         }

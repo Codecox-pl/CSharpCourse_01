@@ -1,0 +1,59 @@
+﻿@model AppStore.Models.Domain.Producto
+@{}
+
+<form asp-action="Add" method="post" enctype="multipart/form-data">
+
+
+    <h2> Agregar Producto</h2>
+   @*  <div>
+        <label asp-for="NombrePro">Nombre Producto</label>
+        <input type="text" asp-for="NombrePro" />
+    </div>
+
+    <div>
+        <label asp-for="Descripcion">Descripcion</label>
+        <input type="text" asp-for="Descripcion" />
+    </div>
+
+    <div>
+        <label asp-for="ImageFile">Adjuntar archivo</label>
+        <input type="file" asp-for="ImageFile" />
+    </div> *@
+
+   @*  <div>
+        <label asp-for="Categorias">Categorias</label>
+        <select asp-items="Model.CategoriasList"  asp-for="Categorias" multiple>
+            <option value="">--Seleccionar--</option>
+        </select>
+    </div>
+ *@
+    <div>
+        <label asp-for="Categorias">Categorias</label>
+        <select asp-items="Model.CategoriasList" asp-for="Categorias" multiple>
+            <option value="">--Seleccionar--</option>
+        </select>
+    </div>
+
+  @*   <div>
+        <label asp-for="Cantidad">Cantidad</label>
+        <input type="number" asp-for="Cantidad" />
+    </div>
+
+    <div>
+        <label asp-for="Precio">Precio</label>
+        <input type="number" asp-for="Precio" />
+    </div>
+
+    @if (TempData["msg"] != null)
+    {
+        <div class="alert">
+            @TempData["msg"]
+        </div>
+    }
+
+    <div>
+        <button>Guardar</button>
+        <a href="/Producto/ProductoList">Ver Todo</a>
+    </div> *@
+
+</form>

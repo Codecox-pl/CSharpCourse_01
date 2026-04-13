@@ -81,7 +81,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "11-EntityFramework", "11-En
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EF-SQL", "EF-SQL\EF-SQL.csproj", "{B9839C06-6D3F-4803-8AB0-D3822FB5738B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppStore", "AppStore\AppStore.csproj", "{D19EA2BA-9843-4C1F-85FE-3EC1B18FE79E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppStore", "AppStore\AppStore.csproj", "{D19EA2BA-9843-4C1F-85FE-3EC1B18FE79E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
