@@ -53,6 +53,8 @@ namespace AppStore.Controllers
             return View(producto);
         }
 
+        
+
         public IActionResult Add()
         {
             var producto = new Producto();
@@ -69,17 +71,62 @@ namespace AppStore.Controllers
 
         public IActionResult Edit(int id) 
         {
-            return View();
+            var producto = productoService.GetById(id);
+            var categoriasDeProducto = productoService.GetCategoriaByProductoId(id);
+            var multiSelectListCategorias = new MultiSelectList(categoriaService.List(), "Id", "Nombre", categoriasDeProducto);
+
+            producto.MultiCategoriasList = multiSelectListCategorias;
+            return View(producto);
+        }
+        [HttpPost]
+        public IActionResult Edit (Producto producto)
+        {
+            var categoriasDeProducto = productoService.GetCategoriaByProductoId(producto.ProductoId);
+            var multiSelectListCategorias = new MultiSelectList(categoriaService.List(), "Id", "Nombre", categoriasDeProducto);
+
+            producto.MultiCategoriasList = multiSelectListCategorias;
+
+            if(!ModelState.IsValid) 
+            {
+              return View(producto);
+            }
+
+            if(producto.ImageFile != null) 
+            { 
+              var fileResultado = fileService.SaveImage(producto.ImageFile);
+                if(fileResultado.Item1 == 0)
+                {
+                    TempData["msg"] = "La imagen no fue guardada";
+                    return View(producto);
+                }
+
+                var imagenName = fileResultado.Item2;
+                producto.Imagen = imagenName;
+
+            }
+
+            var resultadoProducto = productoService.Update(producto);
+
+            if(!resultadoProducto)
+            {
+                TempData["msg"] = "Errores, no se pudo actualizar el producto";
+                return View(producto);
+            }
+
+            TempData["msg"] = "Se actualizo exitosamente el producto";
+            return View(producto);
         }
 
-        public IActionResult Delete() 
+        public IActionResult Delete(int id) 
         {
+            productoService.Delete(id);
             return RedirectToAction(nameof(ProductoList));
         }
 
         public IActionResult ProductoList()
         {
-            return View();
+            var productos = productoService.List();
+            return View(productos);
         }
     }
 }
